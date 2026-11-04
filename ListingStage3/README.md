@@ -1,5 +1,7 @@
 > 当前默认：v5本地Qdrant双集合，50套整体、1277条组件；先选整体，组件暂缓。支持仅填写selling_points，不补产品描述或筛选条件。[说明](D:/ListingStage2/docs/整体组件双集合与API.md) · [读取与检索验证](outputs/structured-v5-release-check-20261104/index.html)。旧段落为历史实验记录。
 
+> v6细粒度特征试验另运行在 http://127.0.0.1:8766 ，仅8套，支持逐图颜色角色和属性条件核对。示例配置为config/runtime.detailed-pilot.example.json；与v5整体配方不可混排。输入LLM尚未接入。
+
 > 当前默认库：完整证据v4的50套Listing，配置为config/runtime.json。历史段落中的前五套、旧50套结果保留作实验记录。
 
 # Listing 第三阶段：按用户输入匹配参考

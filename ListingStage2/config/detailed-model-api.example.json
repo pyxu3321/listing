@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "enabled": false,
+  "protocol": "chat_completions",
+  "base_url": "https://YOUR_MODEL_PROVIDER/v1",
+  "api_key_env": "LISTING_MODEL_API_KEY",
+  "model": "REPLACE_WITH_YOUR_VISION_MODEL_ID",
+  "json_mode": "json_object",
+  "token_parameter": "max_completion_tokens",
+  "max_output_tokens": 12000,
+  "timeout_seconds": 180,
+  "max_calls": 80,
+  "max_image_bytes": 8388608,
+  "embedding": {"provider": "ollama_local", "url": "http://127.0.0.1:11434", "model": "nomic-embed-text:latest"}
+}

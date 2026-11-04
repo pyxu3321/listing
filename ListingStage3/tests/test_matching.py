@@ -31,6 +31,13 @@ SETTINGS={'whole_top_k':5,'components_per_need':3,'minimum_similarity':.25,'incl
 
 
 class MatchTests(unittest.TestCase):
+    def test_detailed_v6_supported_without_mixing_previous_whole_recipes(self):
+        current=record('new');current['overall_embedding']['recipe']='reviewed-detailed-whole-v6'
+        settings={**SETTINGS,'match_components':False}
+        self.assertEqual(len(match({'selling_points':['blue']},[current],settings,Encoder())['whole_candidates']),1)
+        with self.assertRaises(ValueError):
+            match({'selling_points':['blue']},[current,record('old')],settings,Encoder())
+
     def test_selling_points_only_has_no_added_product_context(self):
         from listing_stage3.matcher import request_query
         request={'selling_points':['soft','lightweight']}

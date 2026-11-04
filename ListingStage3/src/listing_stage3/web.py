@@ -54,7 +54,8 @@ class Application:
     def catalogue(self):
         return {'listings': [self.card(r) for r in self.listings], 'inventory': self.inventory,
                 'model': self.config['encoder']['model'], 'retrieval': self.config['retrieval'],
-                'mode': 'vector_only_no_llm_reranking', 'component_count': sum(len(r['components']) for r in self.listings)}
+                'mode': 'vector_only_no_llm_reranking', 'component_count': sum(len(r['components']) for r in self.listings),
+                'feature_recipes': sorted({r['overall_embedding']['recipe'] for r in self.listings})}
 
     def detail(self, version):
         record = self.records[version]

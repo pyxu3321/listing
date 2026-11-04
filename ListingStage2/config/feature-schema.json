@@ -1,0 +1,47 @@
+{
+  "schema": "listing-feature-catalog-v1",
+  "fields": {
+    "selling_point": {"label_zh": "卖点", "group": "selling_points"},
+    "material": {"label_zh": "材质", "group": "product_traits"},
+    "construction": {"label_zh": "结构", "group": "product_traits"},
+    "thickness": {"label_zh": "厚度", "group": "product_traits"},
+    "firmness": {"label_zh": "软硬", "group": "product_traits"},
+    "care": {"label_zh": "护理", "group": "selling_points"},
+    "certification_claim": {"label_zh": "认证来源声明", "group": "product_traits"},
+    "service_claim": {"label_zh": "售后来源声明", "group": "selling_points"},
+    "audience": {"label_zh": "客群", "group": "selling_points"},
+    "use_scene": {"label_zh": "使用场景", "group": "selling_points"},
+    "product_color": {"label_zh": "产品表面色", "group": "product_traits"},
+    "core_color": {"label_zh": "内部材料色", "group": "product_traits"},
+    "scene_background_color": {"label_zh": "场景背景色", "group": "style"},
+    "layout_background_color": {"label_zh": "版面底色", "group": "style"},
+    "text_color": {"label_zh": "文字色", "group": "style"},
+    "icon_color": {"label_zh": "图标色", "group": "style"},
+    "composition": {"label_zh": "构图", "group": "visual_elements"},
+    "expression_method": {"label_zh": "表达手法", "group": "visual_elements"},
+    "visual_style": {"label_zh": "整体风格", "group": "style"}
+  },
+  "objects": ["whole_product", "surface", "cover", "foam_core", "filling", "layer_combination", "scene_background", "layout_background", "text", "icons", "service", "image"],
+  "color_roles": {
+    "product_surface": "product_color",
+    "product_core": "core_color",
+    "scene_background": "scene_background_color",
+    "layout_background": "layout_background_color",
+    "text": "text_color",
+    "icons": "icon_color"
+  },
+  "color_objects": {
+    "product_surface": "surface", "product_core": "foam_core",
+    "scene_background": "scene_background", "layout_background": "layout_background",
+    "text": "text", "icons": "icons"
+  },
+  "allowed_statuses": ["positive", "negative", "conflicting", "unknown"],
+  "query_policy": {
+    "retain_original_input": true,
+    "normalization_language": "en",
+    "known_values_are_examples_not_allowed_universe": true,
+    "unknown_value_action": "out_of_catalog_no_forced_substitution",
+    "ambiguous_object_action": "preserve_alternatives_or_request_clarification",
+    "forbid_adding_product_facts_or_metadata_filters": true
+  }
+}

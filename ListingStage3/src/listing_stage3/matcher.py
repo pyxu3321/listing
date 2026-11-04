@@ -4,7 +4,7 @@ import math
 from pathlib import Path
 
 WHOLE_RECIPE='reviewed-whole-listing-summary-v3'
-WHOLE_RECIPES={WHOLE_RECIPE,'whole-listing-full-evidence-v4','reviewed-structured-whole-v5'}
+WHOLE_RECIPES={WHOLE_RECIPE,'whole-listing-full-evidence-v4','reviewed-structured-whole-v5','reviewed-detailed-whole-v6'}
 PART_RECIPE='component-semantic-text-v1'
 ROLES={'main':'main_image','secondary':'gallery','aplus_image':'aplus'}
 

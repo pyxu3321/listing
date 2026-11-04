@@ -96,11 +96,14 @@ def dataset_filter(dataset_id):
     return Filter(must=[FieldCondition(key='dataset_id',match=MatchValue(value=dataset_id))])
 
 
-def export_dataset(wholes,components,output,store_path):
+def export_dataset(wholes,components,output,store_path,collections=None):
     """预校验后分别写两个集合，核对成功才生成ready清单；不删除历史集合或数据。"""
     from qdrant_client import QdrantClient
     from qdrant_client.models import VectorParams,Distance,PointStruct
     output=Path(output);store_path=Path(store_path).resolve()
+    names=collections or {'whole':WHOLE_COLLECTION,'component':COMPONENT_COLLECTION}
+    if set(names)!={'whole','component'} or len(set(names.values()))!=2 or any(not isinstance(n,str) or not n for n in names.values()):
+        raise ValueError('Need distinct whole/component collection names')
     if output.exists():raise ValueError('Use a new collection-export directory')
     meta=validate_points(wholes,components)
     output.mkdir(parents=True)
@@ -108,7 +111,7 @@ def export_dataset(wholes,components,output,store_path):
     hashes={kind:write_jsonl(output/paths[kind],items) for kind,items in [('whole',wholes),('component',components)]}
     client=QdrantClient(path=str(store_path))
     try:
-        for name,items in [(WHOLE_COLLECTION,wholes),(COMPONENT_COLLECTION,components)]:
+        for name,items in [(names['whole'],wholes),(names['component'],components)]:
             if not client.collection_exists(name):
                 client.create_collection(name,vectors_config=VectorParams(size=meta['dimensions'],distance=Distance.COSINE))
             else:
@@ -122,7 +125,7 @@ def export_dataset(wholes,components,output,store_path):
     finally:
         client.close()
     manifest={'schema':SCHEMA,'status':'ready_pending_operator_review',**meta,
-        'storage':{'mode':'qdrant_local','path':str(store_path),'whole_collection':WHOLE_COLLECTION,'component_collection':COMPONENT_COLLECTION},
+        'storage':{'mode':'qdrant_local','path':str(store_path),'whole_collection':names['whole'],'component_collection':names['component']},
         'records':paths,'record_sha256':hashes,'counts':{'wholes':len(wholes),'components':len(components),
             'whole_vectors':len(wholes),'component_vectors':sum(p['vector'] is not None for p in components),
             'retrievable_components':sum(p['vector'] is not None and p['payload']['controls']['retrieve'] for p in components)},
