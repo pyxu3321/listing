@@ -233,20 +233,7 @@
                                                                                                 margin-top:24px}
                                                                                                 .primary span{
                                                                                                   float:right}
-                                                                                                  .notice{
-                                                                                                    margin-top:23px;
-                                                                                                    background:#f6f4ec;
-                                                                                                    border:1px solid #ede8d8;
-                                                                                                    border-radius:6px;
-                                                                                                    padding:12px;
-                                                                                                    font-size:10px;
-                                                                                                    color:#837653;
-                                                                                                    line-height:1.8}
-                                                                                                    .notice strong{
-                                                                                                      font-weight:600}
-                                                                                                      .notice p{
-                                                                                                        margin:5px 0 0}
-                                                                                                        #error{
+                                                                                                                                                                                                                                                                                                                                                                                                                    #error{
                                                                                                           background:#fff1ee;
                                                                                                           border:1px solid #f2c5ba;
                                                                                                           color:#ae4939;

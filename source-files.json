@@ -137,7 +137,7 @@
   "ListingStage3/tests/test_collection_loader.py": "99fdb026c4f020a2c56798c2d04c1e3487d90f5102a668b92956541370e1a9ae",
   "ListingStage3/tests/test_matching.py": "3cad50ed5cefda99d12977f08da52ef5195230f9bbfa446737de0c03b0ffd27d",
   "ListingStage3/tests/test_web.py": "1e11aa6e2f28023766ce25c37b3a8b33f63165b16e0e2f52d647a7cc160f8e12",
-  "ListingStage3/web/app.js": "691a787428b759d2d04450b5b50df93862059a0d48e95b71377efc4a8db14366",
-  "ListingStage3/web/index.html": "92a020668c506a72319addbced359cbbcbdf2459cae1a43579555ee75c9fad94",
-  "ListingStage3/web/style.css": "d3175ae8eecaa6fcbcd38e44d91856661f5daa351a0dabca196ac0341dda7165"
+  "ListingStage3/web/app.js": "7be28bddf8b9e3c04436a22db89197d22ad9957135b3973884135d60184c0bc1",
+  "ListingStage3/web/index.html": "f5668518fdea23b2c13abbf6dca9f0bb1d1423ca639d9e2502915663fbd3b478",
+  "ListingStage3/web/style.css": "d4c675ec12161378b37862fbf30a158788cb52de8eb597085c06cc77f5b9a42f"
 }

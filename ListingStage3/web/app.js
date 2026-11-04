@@ -33,7 +33,7 @@ function browse() { if(!state.library)return; $('resultTitle').textContent='素�
 async function openDetail(version, partId) {
   if(!state.details.has(version)) state.details.set(version,await api('/api/listings/'+encodeURIComponent(version)));
   const data=state.details.get(version);$('detailTitle').textContent=`采集 #${data.historical_rank} · ${data.identity.product_id}`;
-  const body=$('detailBody');body.replaceChildren(el('p',data.title,'detail-summary'),el('p',`版本 ${version}`,'version'));
+  const body=$('detailBody');body.replaceChildren(el('p',data.title,'detail-summary'));
   const tabs=el('div',null,'detail-tabs'); const content=el('div');
   const choices=[['整体特征','features'],['图片','image'],['视频','video'],['标题 / 五点 / 详情','text'],['来源与版本','source']];
   function switchTab(kind, focusPart) {
@@ -45,11 +45,9 @@ async function openDetail(version, partId) {
         const box=el('section',null,'feature');box.append(el('h3',label));
         for(const x of f[key]||[]) {const item=el('div');item.append(el('strong',featureText(x)),el('p',x.text_en));
           if(x.conditions?.length)item.append(el('p','适用条件：'+x.conditions.join('；'),'condition'));
-          item.append(el('p',`依据：${x.basis || '—'} · 对象：${x.subject || '—'}`,'muted'));
           for(const [i,id] of (x.evidence_part_ids||[]).entries()){const part=data.components.find(p=>p.part_id===id);if(!part)continue;const b=el('button',`证据 ${i+1} · ${roleNames[part.role]||part.role}`,'evidence-link');b.type='button';b.onclick=()=>switchTab(part.entity_kind,id);item.append(b);}box.append(item);}
         content.append(box);
       }
-      const limits=el('section',null,'feature');limits.append(el('h3','借鉴边界与注意事项'));for(const l of f.limitations||[])limits.append(el('p',l));content.append(limits);
     }else if(kind==='source') {content.append(el('pre',JSON.stringify({identity:data.identity,listing_version_id:version,approval_status:data.approval_status,source:data.source},null,2),'detail-source'));}
     else {
       const grid=el('div',null,kind==='text'?'text-components':'component-grid');const parts=data.components.filter(p=>p.entity_kind===kind);
@@ -57,8 +55,7 @@ async function openDetail(version, partId) {
       for(const p of parts){const box=el('article',null,'component');box.id='part-'+p.part_id;box.classList.toggle('disabled',p.controls?.enabled===false);box.append(el('h3',`${roleNames[p.role]||p.role}${p.is_main_image?' · 主图':''}${p.controls?.enabled===false?' · 已禁用':''}`));
         if(p.media_url){const media=el(kind==='video'?'video':'img');media.src=p.media_url;if(kind==='video'){media.controls=true;media.preload='none';}else{media.loading='lazy';media.alt=p.features?.semantic_description_en||p.role;}box.append(media);}
         if(p.source_text)box.append(el('p',p.source_text,'source-text'));
-        if(p.features?.semantic_description_en)box.append(el('p',p.features.semantic_description_en));
-        if(p.features?.limitations?.length)box.append(el('p',p.features.limitations.join('；'),'condition'));
+        if(p.entity_kind!=='text' && p.features?.semantic_description_en)box.append(el('p',p.features.semantic_description_en));
         if(p.reference?.source_url)box.append(safeLink(p.reference.source_url,'打开原始页面 ↗'));
         box.append(el('p',`组件 ${p.part_id}`,'version'));grid.append(box);
       }content.append(grid);
@@ -78,7 +75,7 @@ $('searchForm').addEventListener('submit',async event=>{
   setBusy(true);
   try{
     const output=await api('/api/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({request,top_k:Number($('topK').value),raw_order:$('rawOrder').checked})});state.output=output;
-    $('resultTitle').textContent='整体匹配候选';$('resultNote').textContent='先选整体；下方相似度未经 LLM 事实与条件复核。组件仅供核对，尚未选作生成参考。';
+    $('resultTitle').textContent='整体匹配候选';$('resultNote').textContent='点击候选，查看整套图片、视频与文案。';
     $('querySummary').hidden=false;$('querySummary').textContent=`本次输入：${[...request.selling_points,request.product_description,request.style].filter(Boolean).join(' / ')}\n排序：${$('rawOrder').checked?'原始相似度':'默认排序，接近分数参考历史采集顺序'} · 返回 ${output.result.whole_candidates.length} 套`;
     renderCards(output.result.whole_candidates,true);$('export').disabled=false;
   }catch(error){showError(error);}finally{setBusy(false);}
