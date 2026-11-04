@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "listings": {
+    "3e8e8a624dcfe5291275dd28a13b15778d682462b410d4f0464e91ccfc5c519a": {
+      "0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754": {
+        "retrieve": false,
+        "generation_reference": false
+      }
+    }
+  }
+}

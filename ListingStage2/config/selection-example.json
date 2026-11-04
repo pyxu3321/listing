@@ -1,0 +1,17 @@
+[
+  {
+    "bundle_id": "c0a8a6a76279fc11592045b6cd9d0710ae6039acaf73d153d401762bb92005d9",
+    "part_id": "0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754",
+    "planned_use": "main_image"
+  },
+  {
+    "bundle_id": "a4dbd5cb4c2164a5bbdc69a3d49a67e9c869a7af1f833704707a365f0f97a695",
+    "part_id": "0c0fcf336a0aaf3fe9fb2f8791b6f06e53f27f385978a54c51e1d141a7968b98",
+    "planned_use": "bullet"
+  },
+  {
+    "bundle_id": "b2746630430c1be4d17f26ae1d18cdfc06ea989a09f7aea81d859aeef9aaddc2",
+    "part_id": "74d92d804424d253b7ff48a45969a60a490f95f630c6aa3b15983755044a2c62",
+    "planned_use": "gallery"
+  }
+]

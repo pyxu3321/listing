@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "defaults": {
+    "max_products": 50,
+    "max_images_per_product": null,
+    "max_videos_per_product": null,
+    "request_delay_seconds": 3,
+    "max_description_images_per_product": null,
+    "max_aplus_images_per_product": null,
+    "video_total_timeout_seconds": null,
+    "video_chunk_pause_seconds": 1,
+    "media_concurrency": 2
+  },
+  "sources": [
+    {
+      "id": "amazon-us-topper-bsr",
+      "enabled": true,
+      "url": "https://www.amazon.com/gp/bestsellers/home-garden/8521807011",
+      "marketplace": "US",
+      "language": "en-US",
+      "category_node": "8521807011",
+      "category_name": "Mattress Toppers",
+      "alternate_ranking_url": "https://www.amazon.com/zgbs/home-garden/8521807011",
+      "discovery_url": "https://www.amazon.com/s?i=garden&rh=n%3A8521807011&s=popularity-rank&fs=true&page=2",
+      "discovery_note": "User-provided search page; never used as BSR evidence.",
+      "country": "United States",
+      "description": "美国床垫加垫 Topper BSR；搜索链接仅作发现，不作为排名依据",
+      "tags": [
+        "topper",
+        "reference"
+      ],
+      "country_code": "US",
+      "site_id": "amazon",
+      "category_id": "toppers"
+    }
+  ]
+}

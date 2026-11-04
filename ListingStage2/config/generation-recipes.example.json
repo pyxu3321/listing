@@ -1,0 +1,40 @@
+[
+  {
+    "recipe_id": "close-product-surface",
+    "version": "0.1",
+    "listing_version_id": "3e8e8a624dcfe5291275dd28a13b15778d682462b410d4f0464e91ccfc5c519a",
+    "reference_part_ids": [
+      "0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754"
+    ],
+    "reference_roles": {
+      "0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754": "expression_reference"
+    },
+    "goal": "借鉴床面近景与材质展示构图",
+    "template": "使用 {{own_product_images}} 定义产品外观；只借鉴参考的近景构图。依据 {{own_product_facts}} 规划 {{image_role}}，遵循 {{brand_style}}。保持真实结构与厚度，不复制参考的商标、织物或功能声明；输出无字底图。",
+    "variables": [
+      "own_product_images",
+      "own_product_facts",
+      "image_role",
+      "brand_style"
+    ],
+    "product_constraints": [
+      "自有图定义产品外观",
+      "不得将参考参数作为自有事实",
+      "厚度、孔洞与形变需依据实际样品"
+    ],
+    "acceptance_checks": [
+      "产品身份",
+      "构图职责",
+      "无新增声明"
+    ],
+    "applicability": {
+      "country": "US",
+      "category": "toppers",
+      "transfer_scope": "composition_only",
+      "excluded": "不同结构不得迁移绗缝鼓包或裙边"
+    },
+    "status": "draft",
+    "validation_trials": [],
+    "note": "架构示例，尚未执行此模板。先前rank4实验不能直接视为本模板通过记录。"
+  }
+]

@@ -1,0 +1,167 @@
+{
+  "schema_version": 3,
+  "producer_type": "interactive_gpt_manual_review",
+  "model_version": "unknown",
+  "review_date": "2026-11-02",
+  "approval_status": "pending_operator_review",
+  "analysis_scope": "11 source-image contact-sheet panels plus original text and eight sampled video frames; no audio transcription or continuous playback analysis",
+  "video_features": {
+    "semantic_description_en": "Niagara charcoal quilted pillow-top pad video: dark bedroom sleeping scene, close-up raised quilted surface, hands fitting the elastic side around a mattress, palm contact and compression-style demonstration, fingertip contact, airy arrow graphics and return to a sleeping person. On-screen text claims even weight distribution, fully breathable and cooling bamboo viscose material; these are unverified competitor claims. Visual samples only, no audio transcription.",
+    "observations_zh": [
+      "0秒：昏暗卧室中的睡眠场景，左上有媒体标识。",
+      "5秒：深灰色绗缝表面特写。",
+      "10秒：双手拉伸床垫边缘包覆层，展示安装与包边。",
+      "15秒：手掌接触并按压感的表面展示；单帧不能测量软硬或回弹速度。",
+      "20秒：表面与手指，画面文字宣称均匀分布重量。",
+      "25秒：绗缝表面，文字宣称 fully breathable。",
+      "30秒：向上箭头及 cooling bamboo viscose material 声明。",
+      "37秒：人物侧卧睡眠近景。"
+    ],
+    "sampled_seconds": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      37
+    ],
+    "analysis_basis": "8 decoded source-video frames inspected in this conversation",
+    "audio_status": "not_transcribed",
+    "verification_status": "competitor_claims_not_verified",
+    "limitations": [
+      "关键帧不代表全部镜头，未逐帧或连续观看视频。",
+      "没有测量透气、温度、支撑、回弹或认证真实性。"
+    ],
+    "approval_status": "pending_operator_review"
+  },
+  "input_fingerprint": "d4bdf9abe2cff60f8fa4ddba240599ba7b85c0c622dab6f6ef7ce1a83db11e2f",
+  "overall_features": {
+    "keywords_zh": [
+      "床垫加垫",
+      "绗缝蓬松",
+      "柔软舒适",
+      "手按压展示",
+      "睡眠场景",
+      "透气表达",
+      "深口袋包覆",
+      "可机洗"
+    ],
+    "keywords_en": [
+      "pillow top mattress pad",
+      "quilted loft",
+      "soft comfort",
+      "hand press demonstration",
+      "bedroom lifestyle",
+      "breathability messaging",
+      "elastic deep pocket",
+      "machine washable"
+    ],
+    "selling_points": [
+      {
+        "id": "soft_comfort",
+        "name_zh": "柔软、蓬松与舒适",
+        "expression": "绗缝近景、手掌接触/按压展示与侧卧场景共同表达；五点用 ultra-soft/cloud-like 强化。",
+        "evidence_part_ids": [
+          "0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754",
+          "8a181aeec1a79db58fc3f19782767e6e671f7587f34af5bec0982c451ced6090",
+          "9cda19adec13888b93946df4a703c7e51ff0661d3f93aeb15a8543f04e2b4285",
+          "b42ce382f3a288ecdcf22e3198c0de206c5148c5c660f26c53028600b0224d8a",
+          "f36115747b67276cfa8872a80cc373b2cd100fa6a234f5fe2c36ba998338683a",
+          "f72ba47a6df70aab6d076d3b00a6d081f173ae646ee07642fe64705e622081b8"
+        ],
+        "evidence_status": "visible_expression_plus_unverified_competitor_claim"
+      },
+      {
+        "id": "breathable_cooling",
+        "name_zh": "透气与清凉表达",
+        "expression": "向上箭头、自然色背景、透气文字和热睡人群定位。",
+        "evidence_part_ids": [
+          "b322ef77362704015b585cd99881b405f6bc43d550b342a1ddb0a38ea495da53",
+          "75c80633db30f8e341356561b579a9ef8aa83a59bc1c84a8235901bbefd11161",
+          "7f6482514bdbbbb4ac256484ec629bc25588f97ec1418f17967ebe3ca04eeccf",
+          "64bd6ae4b0e7650ce9387cfe668d5edb66721500c599bd9242fb28d1847504c8",
+          "f72ba47a6df70aab6d076d3b00a6d081f173ae646ee07642fe64705e622081b8"
+        ],
+        "evidence_status": "unverified_competitor_claim_not_measured"
+      },
+      {
+        "id": "support",
+        "name_zh": "身体贴合与支撑表达",
+        "expression": "侧卧人物、身体位置标注与均匀重量分布声明。",
+        "evidence_part_ids": [
+          "0dc19ade09f5f5a8f5da0c91e5d547f33836cf909e7d3510f64ed87099ac6e16",
+          "d79043cb41e4d2301ce426a6a3d32402ca8ec2bcbd8f31724662776f0517b1e1",
+          "f36115747b67276cfa8872a80cc373b2cd100fa6a234f5fe2c36ba998338683a",
+          "f72ba47a6df70aab6d076d3b00a6d081f173ae646ee07642fe64705e622081b8"
+        ],
+        "evidence_status": "unverified_competitor_claim_not_measured"
+      },
+      {
+        "id": "secure_fit",
+        "name_zh": "深口袋包覆与安装便利",
+        "expression": "拉伸侧围/床角的操作展示，关联安装与不易滑动的文案。",
+        "evidence_part_ids": [
+          "35381d5e06c47f00b3bd6181a6581a5fe8923ca0f83591b41ff4bb3b0d2a2b83",
+          "58da3b8845df80a2181bfab7155d9a3b79e6cdff43cb98f0623ff3883d6fcfc5",
+          "df6fd70c3a0a0b6e19b012816ef15218fd413820b759432b8725958d28868aca",
+          "f72ba47a6df70aab6d076d3b00a6d081f173ae646ee07642fe64705e622081b8"
+        ],
+        "evidence_status": "visual_installation_demonstration_plus_source_claim"
+      },
+      {
+        "id": "care",
+        "name_zh": "清洁维护便利",
+        "expression": "五点描述机洗与压缩包装后的恢复方法，当前视觉样本未展示洗涤测试。",
+        "evidence_part_ids": [
+          "58da3b8845df80a2181bfab7155d9a3b79e6cdff43cb98f0623ff3883d6fcfc5",
+          "df6fd70c3a0a0b6e19b012816ef15218fd413820b759432b8725958d28868aca"
+        ],
+        "evidence_status": "source_copy_claim_only"
+      }
+    ],
+    "product_form": "pillow_top_pad",
+    "audience": [
+      {
+        "name": "hot sleepers",
+        "basis": "原副标题和清凉表达；非功效验证"
+      },
+      {
+        "name": "希望增加床面舒适感的使用者",
+        "basis": "由柔软和垫层表达归纳，属于分析推断"
+      }
+    ],
+    "scenes": [
+      "卧室产品展示",
+      "手部触感演示",
+      "侧卧睡眠",
+      "床角安装",
+      "家庭床上生活场景"
+    ],
+    "visual_style": [
+      "深灰产品纹理近景",
+      "绿色自然主题的A+",
+      "浅色卧室与深色产品对比",
+      "文字标注和箭头解释"
+    ],
+    "copy_structure": {
+      "title": "品类、尺寸、柔软等卖点与来源功效声明",
+      "bullets": "柔软与材料/尺寸 → 舒适与支撑 → 安装与恢复 → 机洗 → 满意度承诺",
+      "aplus": "生活场景 → 柔软 → 清凉/透气 → 支撑 → 包覆固定 → 信任与家庭场景"
+    },
+    "transferable_principles": [
+      "将触感近景、人物使用场景与文字利益点组织成同一套柔软舒适表达。",
+      "安装类卖点使用动作图或视频展示，比只有形容词更便于理解。",
+      "图片、五点与视频重复同一核心主题，同时分别承担外观、场景、操作说明。"
+    ],
+    "limitations": [
+      "普通详情在原快照缺失，不补造。",
+      "只取得图库前4张和7张A+，整套指本次实际采集范围，非网站全部内容。",
+      "人物和系列图可能为通用品牌素材，不证明所选变体的所有外观与参数。",
+      "清凉、疼痛缓解、化学物质声明、媒体背书、认证标识和客户规模均未经独立验证。",
+      "视频只分析8个关键帧，没有语音转录。"
+    ],
+    "embedding_text_en": "A US Niagara charcoal quilted pillow-top mattress pad Listing organized around ultra-soft, cloud-like comfort. The main image emphasizes a raised quilted surface in a bedroom. Secondary and A+ images combine tactile hand-press softness imagery, side-sleeping lifestyle scenes, green natural backgrounds, airflow-arrow graphics and elastic deep-pocket fitting. The video samples repeat the same narrative: sleeping bedroom, fabric close-up, hands fitting the side skirt, palm and fingertip contact, breathability/cooling text and sleeping person. Copy progresses from softness and material/size claims to cushioning/support, installation and package recovery, washability and satisfaction. Intended expression: added bed comfort, airy/cooling feel, secure fit and easy care; hot sleepers are explicitly addressed. Reusable strategy is coordinated product close-ups, touch demonstrations, sleeping scenes and installation actions across images, video and copy. Softness, support, cooling, pain-relief, material, certification and media claims remain competitor statements, not independently verified product facts. Scope: four gallery images, seven A+ images, source copy and eight sampled video frames; ordinary description absent and audio not transcribed."
+  }
+}

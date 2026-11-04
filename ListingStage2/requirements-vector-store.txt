@@ -1,0 +1,2 @@
+# 独立环境安装：.venv\Scripts\python.exe -m pip install -r requirements-vector-store.txt
+qdrant-client==1.19.1

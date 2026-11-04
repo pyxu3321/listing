@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "defaults": {
+    "enabled": true,
+    "embed": true,
+    "retrieve": true,
+    "generation_reference": true
+  },
+  "roles": {
+    "main_image": {
+      "max_components": null
+    },
+    "gallery": {
+      "max_components": null
+    },
+    "title": {},
+    "bullet": {},
+    "description": {},
+    "aplus": {
+      "embed": true,
+      "retrieve": true,
+      "generation_reference": true
+    },
+    "video": {
+      "embed": true,
+      "retrieve": true,
+      "generation_reference": true
+    }
+  },
+  "listings": {}
+}

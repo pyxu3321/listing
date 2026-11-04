@@ -1,0 +1,10 @@
+# 第三阶段复用第二阶段编码模块；测试使用Python标准库unittest。
+[project]
+name = "listing-stage3"
+version = "0.1.0"
+description = "Whole Listing first reference matching"
+requires-python = ">=3.12,<3.14"
+dependencies = ["numpy>=1.26,<3"]
+
+[tool.uv]
+package = false

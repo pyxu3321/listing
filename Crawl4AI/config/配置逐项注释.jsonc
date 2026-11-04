@@ -1,0 +1,135 @@
+// 2026-11-03配置中文对照，仅供阅读，不作为运行配置。
+{
+  // 对应原始运行JSON文件；此处仅提供逐项核对快照。
+  "sources.json": {
+    // 多来源清单结构版本，当前为1。
+    "schema_version": 1,
+    // 多来源共同默认值；不能在这里填写来源ID、榜单URL或enabled。合并顺序为引擎默认→本层→单来源。
+    "defaults": {
+      // 最多访问多少商品详情，0到50；0仍可能读取榜单，并非离线预检。
+      "max_products": 50,
+      // 此类媒体数量上限；null表示全部已识别候选，0关闭，正整数限制数量。
+      "max_images_per_product": null,
+      // 此类媒体数量上限；null表示全部已识别候选，0关闭，正整数限制数量。
+      "max_videos_per_product": null,
+      // 常规商品请求间隔秒数；不保证网站不会限流。
+      "request_delay_seconds": 3,
+      // 此类媒体数量上限；null表示全部已识别候选，0关闭，正整数限制数量。
+      "max_description_images_per_product": null,
+      // 此类媒体数量上限；null表示全部已识别候选，0关闭，正整数限制数量。
+      "max_aplus_images_per_product": null,
+      // 单视频总时限秒数；null不设总时限，仍保留单次无数据等待超时。
+      "video_total_timeout_seconds": null,
+      // 后台续传每块后的间隔秒数，默认1，范围0到60。
+      "video_chunk_pause_seconds": 1,
+      // 同一商品内部媒体并发数，默认3；商品详情仍按排名顺序处理。
+      "media_concurrency": 2
+    },
+    // 来源列表；每项可配置国家、网站、品类、URL和说明，当前只实现美国Amazon榜单采集。
+    "sources": [
+      {
+        // 注册表内唯一来源ID，不能重复；执行前归一化为source_id。
+        "id": "amazon-us-topper-bsr",
+        // 是否执行此来源；其他国家或独立站尚未适配时应保持false。
+        "enabled": true,
+        // 该来源的BSR入口，执行前映射为ranking_url；不是搜索排序URL。
+        "url": "https://www.amazon.com/gp/bestsellers/home-garden/8521807011",
+        // 当前运行仅支持US，必须与country_code一致。
+        "marketplace": "US",
+        // 来源语言及期望OCR语言；实际OCR语言回退会另外记录。
+        "language": "en-US",
+        // Amazon类目节点ID，用于核对榜单与排名证据，不等同内部品类名。
+        "category_node": "8521807011",
+        // 期望榜单类目标题；必须与节点共同验证，避免错类目排名。
+        "category_name": "Mattress Toppers",
+        // 备用榜单入口；仍需按类目和显式排名校验。
+        "alternate_ranking_url": "https://www.amazon.com/zgbs/home-garden/8521807011",
+        // 发现商品的搜索入口，仅保留来源说明，不作为BSR证据。
+        "discovery_url": "https://www.amazon.com/s?i=garden&rh=n%3A8521807011&s=popularity-rank&fs=true&page=2",
+        // 发现链接的业务备注，说明搜索排序不能直接视为销量排名。
+        "discovery_note": "User-provided search page; never used as BSR evidence.",
+        // 可读国家说明，目录与适配判断以country_code为准。
+        "country": "United States",
+        // 来源业务说明，例如美国topper参考；保留在来源元数据中。
+        "description": "美国床垫加垫 Topper BSR；搜索链接仅作发现，不作为排名依据",
+        // 人工来源标签，便于后续筛选，不是模型分析结论。
+        "tags": ["topper", "reference"],
+        // 分类国家代码，当前US；第一层商品导出目录。
+        "country_code": "US",
+        // 网站标识，当前amazon；位于国家目录下，独立站只预留身份结构。
+        "site_id": "amazon",
+        // 内部品类标识，例如toppers，位于网站目录下；不是Amazon节点编号。
+        "category_id": "toppers"
+      }
+    ]
+  },
+  // 对应原始运行JSON文件；此处仅提供逐项核对快照。
+  "topper-us.json": {
+    // 单来源唯一ID，用于报告、批次与来源关联，非ASIN。
+    "source_id": "amazon-us-topper-bsr",
+    // 当前只支持amazon_bestsellers；其他来源需要新增适配器。
+    "source_type": "amazon_bestsellers",
+    // 当前运行仅支持US，必须与country_code一致。
+    "marketplace": "US",
+    // 来源语言及期望OCR语言；实际OCR语言回退会另外记录。
+    "language": "en-US",
+    // Amazon类目节点ID，用于核对榜单与排名证据，不等同内部品类名。
+    "category_node": "8521807011",
+    // 期望榜单类目标题；必须与节点共同验证，避免错类目排名。
+    "category_name": "Mattress Toppers",
+    // 主BSR榜单入口；必须是受支持Amazon US HTTPS页面。
+    "ranking_url": "https://www.amazon.com/gp/bestsellers/home-garden/8521807011",
+    // 备用榜单入口；仍需按类目和显式排名校验。
+    "alternate_ranking_url": "https://www.amazon.com/zgbs/home-garden/8521807011",
+    // 发现商品的搜索入口，仅保留来源说明，不作为BSR证据。
+    "discovery_url": "https://www.amazon.com/s?i=garden&rh=n%3A8521807011&s=popularity-rank&fs=true&page=2",
+    // 发现链接的业务备注，说明搜索排序不能直接视为销量排名。
+    "discovery_note": "User-provided search page; never used as BSR evidence.",
+    // 最多访问多少商品详情，0到50；0仍可能读取榜单，并非离线预检。
+    "max_products": 50,
+    // 榜单期望末位，用于范围和完整性检查；和实际详情数量max_products分开。
+    "rank_end": 50,
+    // 此类媒体数量上限；null表示全部已识别候选，0关闭，正整数限制数量。
+    "max_images_per_product": null,
+    // 此类媒体数量上限；null表示全部已识别候选，0关闭，正整数限制数量。
+    "max_description_images_per_product": null,
+    // 此类媒体数量上限；null表示全部已识别候选，0关闭，正整数限制数量。
+    "max_aplus_images_per_product": null,
+    // 同一商品内部媒体并发数，默认3；商品详情仍按排名顺序处理。
+    "media_concurrency": 2,
+    // 是否对已下载详情/A+图片执行本地OCR；false不影响原图归档。
+    "ocr_enabled": true,
+    // 此类媒体数量上限；null表示全部已识别候选，0关闭，正整数限制数量。
+    "max_videos_per_product": null,
+    // 常规商品请求间隔秒数；不保证网站不会限流。
+    "request_delay_seconds": 3,
+    // 浏览器单页面超时毫秒，默认60000；不是整轮任务总时限。
+    "page_timeout_ms": 60000,
+    // 常规单图片体积上限字节，20971520=20MiB。
+    "max_image_bytes": 20971520,
+    // 常规单视频上限字节，104857600=100MiB；独立download_video工具另有固定上限。
+    "max_video_bytes": 104857600,
+    // 期望配送位置；null表示不主动要求指定位置。页面实际显示单独观察，不保证已切换成功。
+    "delivery_location": null,
+    // 当前只支持local本地归档，未接云对象存储。
+    "storage_backend": "local",
+    // 默认库目录，相对项目根；运行入口可用--library覆盖。
+    "library_directory": "library",
+    // 可读国家说明，目录与适配判断以country_code为准。
+    "country": "United States",
+    // 来源业务说明，例如美国topper参考；保留在来源元数据中。
+    "description": "美国床垫加垫 Topper BSR；搜索链接仅作发现，不作为排名依据",
+    // 人工来源标签，便于后续筛选，不是模型分析结论。
+    "tags": ["topper", "reference"],
+    // 分类国家代码，当前US；第一层商品导出目录。
+    "country_code": "US",
+    // 网站标识，当前amazon；位于国家目录下，独立站只预留身份结构。
+    "site_id": "amazon",
+    // 内部品类标识，例如toppers，位于网站目录下；不是Amazon节点编号。
+    "category_id": "toppers",
+    // 单视频总时限秒数；null不设总时限，仍保留单次无数据等待超时。
+    "video_total_timeout_seconds": null,
+    // 后台续传每块后的间隔秒数，默认1，范围0到60。
+    "video_chunk_pause_seconds": 1
+  }
+}

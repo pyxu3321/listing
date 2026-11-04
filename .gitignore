@@ -1,0 +1,27 @@
+# 只版本化源码、配置模板和文档。数据、凭据与本机运行结果另行管理。
+**/.venv/
+**/node_modules/
+**/__pycache__/
+**/.pytest_cache/
+**/.test-deps/
+*.py[cod]
+**/.env
+**/.env.*
+!**/.env.example
+*.local.*
+**/data/
+**/outputs/
+**/library/
+**/cache/
+**/.runtime/
+**/logs/
+*.log
+*.sqlite*
+*.db
+*.mp4
+*.webm
+*.zip
+*.pem
+*.key
+**/secrets.*
+**/credentials.*

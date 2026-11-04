@@ -1,0 +1,337 @@
+// 2026-11-03配置中文对照，仅供阅读，不作为运行配置。
+{
+  // 对应原始标准JSON文件；实际运行读取原文件，而不是本对照。
+  "components.json": {
+    // 结构版本；API/组件配置为1，人工整体审阅示例为3；不要随意修改。
+    "schema_version": 1,
+    // 组件全局默认；先继承源分析状态，再被类型规则和单项覆盖。
+    "defaults": {
+      // 是否启用：API配置false禁止远程请求；组件配置false会关闭该组件全部用途，素材仍保留。
+      "enabled": true,
+      // 是否编码/保留活动组件向量；false自动关闭retrieve，但仍可能为整体分析调用模型。
+      "embed": true,
+      // 是否进入组件索引；只关闭本项不使整体向量失效。
+      "retrieve": true,
+      // 是否作为生成表达参考；false暂停引用此组件的模板，不代表删除素材。
+      "generation_reference": true
+    },
+    // 按组件角色设置规则；真实来源角色名必须匹配，别名不会自动互相套用。
+    "roles": {
+      // 采集记录确认的主图组件规则，不由模型根据白底推断。
+      "main_image": {
+        // 该类型最多启用数量；null不限、0全部停用；按源组件顺序，不是质量排名。
+        "max_components": null
+      },
+      // 附图规则。
+      "gallery": {
+        // 该类型最多启用数量；null不限、0全部停用；按源组件顺序，不是质量排名。
+        "max_components": null
+      },
+      // 标题组件规则。
+      "title": {
+      },
+      // 单条五点组件规则；保留来源实际条数。
+      "bullet": {
+      },
+      // 普通详情组件规则；缺失时不以模型编写内容补齐。
+      "description": {
+      },
+      // A+图片或已有A+文本组件规则。
+      "aplus": {
+        // 是否编码/保留活动组件向量；false自动关闭retrieve，但仍可能为整体分析调用模型。
+        "embed": true,
+        // 是否进入组件索引；只关闭本项不使整体向量失效。
+        "retrieve": true,
+        // 是否作为生成表达参考；false暂停引用此组件的模板，不代表删除素材。
+        "generation_reference": true
+      },
+      // 视频组件规则；新API入口尚不发送原始视频，历史人工v3可包含视频组件。
+      "video": {
+        // 是否编码/保留活动组件向量；false自动关闭retrieve，但仍可能为整体分析调用模型。
+        "embed": true,
+        // 是否进入组件索引；只关闭本项不使整体向量失效。
+        "retrieve": true,
+        // 是否作为生成表达参考；false暂停引用此组件的模板，不代表删除素材。
+        "generation_reference": true
+      }
+    },
+    // 按Listing版本ID→组件part_id两层指定单项覆盖；不是商品ASIN。
+    "listings": {
+    }
+  },
+  // 对应原始标准JSON文件；实际运行读取原文件，而不是本对照。
+  "components.override.example.json": {
+    // 结构版本；API/组件配置为1，人工整体审阅示例为3；不要随意修改。
+    "schema_version": 1,
+    // 按Listing版本ID→组件part_id两层指定单项覆盖；不是商品ASIN。
+    "listings": {
+      // 具体Listing版本或组件ID键；只作用于当前精确ID，复制到新任务前需重新核对。
+      "3e8e8a624dcfe5291275dd28a13b15778d682462b410d4f0464e91ccfc5c519a": {
+        // 具体Listing版本或组件ID键；只作用于当前精确ID，复制到新任务前需重新核对。
+        "0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754": {
+          // 是否进入组件索引；只关闭本项不使整体向量失效。
+          "retrieve": false,
+          // 是否作为生成表达参考；false暂停引用此组件的模板，不代表删除素材。
+          "generation_reference": false
+        }
+      }
+    }
+  },
+  // 对应原始标准JSON文件；实际运行读取原文件，而不是本对照。
+  "generation-recipes.example.json": [
+    {
+      // 生成方案逻辑ID，和version共同标识一个方案版本。
+      "recipe_id": "close-product-surface",
+      // 生成方案版本；改变模板、约束或适用范围应新建版本并重新验证。
+      "version": "0.1",
+      // 方案引用的v3 bundle_id，必须属于本次导出批次。
+      "listing_version_id": "3e8e8a624dcfe5291275dd28a13b15778d682462b410d4f0464e91ccfc5c519a",
+      // 引用组件ID列表，必须属于绑定Listing版本。
+      "reference_part_ids": ["0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754"],
+      // 每个引用组件的职责；当前竞品只允许expression_reference。
+      "reference_roles": {
+        // 具体Listing版本或组件ID键；只作用于当前精确ID，复制到新任务前需重新核对。
+        "0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754": "expression_reference"
+      },
+      // 本图/方案要表达的目标，不能代替产品事实。
+      "goal": "借鉴床面近景与材质展示构图",
+      // 提示词模板；{{变量名}}由后续生成阶段填充，本阶段不会执行模板或生图。
+      "template": "使用 {{own_product_images}} 定义产品外观；只借鉴参考的近景构图。依据 {{own_product_facts}} 规划 {{image_role}}，遵循 {{brand_style}}。保持真实结构与厚度，不复制参考的商标、织物或功能声明；输出无字底图。",
+      // 模板需要外部提供的变量名；例如自有产品图、事实、图片用途和品牌风格。
+      "variables": ["own_product_images", "own_product_facts", "image_role", "brand_style"],
+      // 必须保持的产品真实性与外观约束。
+      "product_constraints": ["自有图定义产品外观", "不得将参考参数作为自有事实", "厚度、孔洞与形变需依据实际样品"],
+      // 验证时逐项检查的名称；每条试验必须覆盖全部项。
+      "acceptance_checks": ["产品身份", "构图职责", "无新增声明"],
+      // 已声明适用的国家、品类和迁移范围，不表示已经验证通过。
+      "applicability": {
+        // 适用国家范围；US表示美国。
+        "country": "US",
+        // 内部品类标识，本例toppers。
+        "category": "toppers",
+        // 允许迁移的表达范围；composition_only表示仅构图。
+        "transfer_scope": "composition_only",
+        // 不适用情况或禁止迁移的结构、声明。
+        "excluded": "不同结构不得迁移绗缝鼓包或裙边"
+      },
+      // 方案状态draft/experimental/validated/retired；示例draft尚未验证。
+      "status": "draft",
+      // 试验记录列表；空列表表示没有验证记录，不能据此标稳定。
+      "validation_trials": [],
+      // 补充说明，不作为产品参数或功能证据。
+      "note": "架构示例，尚未执行此模板。先前rank4实验不能直接视为本模板通过记录。"
+    }
+  ],
+  // 对应原始标准JSON文件；实际运行读取原文件，而不是本对照。
+  "model-api.example.json": {
+    // 结构版本；API/组件配置为1，人工整体审阅示例为3；不要随意修改。
+    "schema_version": 1,
+    // 是否启用：API配置false禁止远程请求；组件配置false会关闭该组件全部用途，素材仍保留。
+    "enabled": false,
+    // 当前仅实现chat_completions兼容协议。
+    "protocol": "chat_completions",
+    // API前缀，程序追加/chat/completions；不在URL中填写密钥。
+    "base_url": "https://api.openai.com/v1",
+    // 保存API密钥的环境变量名称，不是密钥本身；程序不自动加载.env。
+    "api_key_env": "LISTING_MODEL_API_KEY",
+    // 模型ID：顶层为支持图片输入的图文模型；embedding内为已安装的本地向量模型。
+    "model": "REPLACE_WITH_YOUR_VISION_MODEL_ID",
+    // json_object请求JSON模式；prompt_only不传该参数，但响应仍必须是纯JSON。
+    "json_mode": "json_object",
+    // 按供应商支持情况选择max_completion_tokens或max_tokens；只改变参数名。
+    "token_parameter": "max_completion_tokens",
+    // 每次响应输出token上限；截断会失败，不自动补全或重试。
+    "max_output_tokens": 2500,
+    // 单次HTTP请求超时秒数，不是整个任务总时限。
+    "timeout_seconds": 120,
+    // 单次任务的API尝试次数上限；不等同于固定金额，超时也可能已计费。
+    "max_calls": 30,
+    // 单张图片字节上限；当前8388608=8MiB，不自动缩图。
+    "max_image_bytes": 8388608,
+    // 本地编码设置；远程图文分析与向量编码是两件事。
+    "embedding": {
+      // 当前仅支持ollama_local，不支持远程向量API。
+      "provider": "ollama_local",
+      // 本机Ollama地址；仅允许回环地址，需服务已启动。
+      "url": "http://127.0.0.1:11434",
+      // 模型ID：顶层为支持图片输入的图文模型；embedding内为已安装的本地向量模型。
+      "model": "nomic-embed-text:latest"
+    }
+  },
+  // 对应原始标准JSON文件；实际运行读取原文件，而不是本对照。
+  "pilot.json": {
+    // 冻结payload文件的SHA256，读取前严格核对；修改输入应显式重建。
+    "payload_sha256": "e5e6a609b43ace746c151b1744f48f74d28481d28aed829ca8133321ea4a4e4b",
+    // 冻结数据范围说明，不控制采集数量或过滤器。
+    "scope": "existing reviewed first five products"
+  },
+  // 对应原始标准JSON文件；实际运行读取原文件，而不是本对照。
+  "rank1-whole-review.json": {
+    // 结构版本；API/组件配置为1，人工整体审阅示例为3；不要随意修改。
+    "schema_version": 3,
+    // 人工/模型产出类型，表明分析来源。
+    "producer_type": "interactive_gpt_manual_review",
+    // 实际分析模型版本；未知保留unknown，不猜测。
+    "model_version": "unknown",
+    // 审阅日期，用于追溯，不表示采集日期或批准日期。
+    "review_date": "2026-11-02",
+    // 审核状态；pending_operator_review表示尚未批准。
+    "approval_status": "pending_operator_review",
+    // 实际检查覆盖范围；如接触表、视频关键帧及未听音频等。
+    "analysis_scope": "11 source-image contact-sheet panels plus original text and eight sampled video frames; no audio transcription or continuous playback analysis",
+    // 历史视频人工特征，不是API直传视频分析的配置。
+    "video_features": {
+      // 供组件向量化的英文语义描述；不是原始文案或事实核验结论。
+      "semantic_description_en": "Niagara charcoal quilted pillow-top pad video: dark bedroom sleeping scene, close-up raised quilted surface, hands fitting the elastic side around a mattress, palm contact and compression-style demonstration, fingertip contact, airy arrow graphics and return to a sleeping person. On-screen text claims even weight distribution, fully breathable and cooling bamboo viscose material; these are unverified competitor claims. Visual samples only, no audio transcription.",
+      // 可见内容的中文观察。
+      "observations_zh": ["0秒：昏暗卧室中的睡眠场景，左上有媒体标识。", "5秒：深灰色绗缝表面特写。", "10秒：双手拉伸床垫边缘包覆层，展示安装与包边。", "15秒：手掌接触并按压感的表面展示；单帧不能测量软硬或回弹速度。", "20秒：表面与手指，画面文字宣称均匀分布重量。", "25秒：绗缝表面，文字宣称 fully breathable。", "30秒：向上箭头及 cooling bamboo viscose material 声明。", "37秒：人物侧卧睡眠近景。"],
+      // 实际查看的关键帧时间点（秒）；不等于连续观看整段视频。
+      "sampled_seconds": [0, 5, 10, 15, 20, 25, 30, 37],
+      // 分析依据及来源覆盖范围。
+      "analysis_basis": "8 decoded source-video frames inspected in this conversation",
+      // 音频覆盖状态；未转录不能声称已经分析语音。
+      "audio_status": "not_transcribed",
+      // 声明核验状态；未独立验证不能当作已验证事实。
+      "verification_status": "competitor_claims_not_verified",
+      // 缺失、不可验证和不适用事项；不能在生成阶段自动忽略。
+      "limitations": ["关键帧不代表全部镜头，未逐帧或连续观看视频。", "没有测量透气、温度、支撑、回弹或认证真实性。"],
+      // 审核状态；pending_operator_review表示尚未批准。
+      "approval_status": "pending_operator_review"
+    },
+    // 身份与组件内容摘要，build前核对；素材变化后必须重新审阅。
+    "input_fingerprint": "d4bdf9abe2cff60f8fa4ddba240599ba7b85c0c622dab6f6ef7ce1a83db11e2f",
+    // 整套综合特征；整体向量使用其独立叙述，不平均各组件向量。
+    "overall_features": {
+      // 属于整套Listing的中文关键词。
+      "keywords_zh": ["床垫加垫", "绗缝蓬松", "柔软舒适", "手按压展示", "睡眠场景", "透气表达", "深口袋包覆", "可机洗"],
+      // 属于整套Listing的英文关键词。
+      "keywords_en": ["pillow top mattress pad", "quilted loft", "soft comfort", "hand press demonstration", "bedroom lifestyle", "breathability messaging", "elastic deep pocket", "machine washable"],
+      // 整体卖点及其证据；不代表自有产品已验证功效。
+      "selling_points": [
+        {
+          // 当前卖点或分析条目的内部标识。
+          "id": "soft_comfort",
+          // 中文卖点名称。
+          "name_zh": "柔软、蓬松与舒适",
+          // 卖点如何通过图片/文字表达。
+          "expression": "绗缝近景、手掌接触/按压展示与侧卧场景共同表达；五点用 ultra-soft/cloud-like 强化。",
+          // 支撑该卖点的组件ID，必须属于本次输入包。
+          "evidence_part_ids": ["0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754", "8a181aeec1a79db58fc3f19782767e6e671f7587f34af5bec0982c451ced6090", "9cda19adec13888b93946df4a703c7e51ff0661d3f93aeb15a8543f04e2b4285", "b42ce382f3a288ecdcf22e3198c0de206c5148c5c660f26c53028600b0224d8a", "f36115747b67276cfa8872a80cc373b2cd100fa6a234f5fe2c36ba998338683a", "f72ba47a6df70aab6d076d3b00a6d081f173ae646ee07642fe64705e622081b8"],
+          // 证据覆盖和来源状态。
+          "evidence_status": "visible_expression_plus_unverified_competitor_claim"
+        },
+        {
+          // 当前卖点或分析条目的内部标识。
+          "id": "breathable_cooling",
+          // 中文卖点名称。
+          "name_zh": "透气与清凉表达",
+          // 卖点如何通过图片/文字表达。
+          "expression": "向上箭头、自然色背景、透气文字和热睡人群定位。",
+          // 支撑该卖点的组件ID，必须属于本次输入包。
+          "evidence_part_ids": ["b322ef77362704015b585cd99881b405f6bc43d550b342a1ddb0a38ea495da53", "75c80633db30f8e341356561b579a9ef8aa83a59bc1c84a8235901bbefd11161", "7f6482514bdbbbb4ac256484ec629bc25588f97ec1418f17967ebe3ca04eeccf", "64bd6ae4b0e7650ce9387cfe668d5edb66721500c599bd9242fb28d1847504c8", "f72ba47a6df70aab6d076d3b00a6d081f173ae646ee07642fe64705e622081b8"],
+          // 证据覆盖和来源状态。
+          "evidence_status": "unverified_competitor_claim_not_measured"
+        },
+        {
+          // 当前卖点或分析条目的内部标识。
+          "id": "support",
+          // 中文卖点名称。
+          "name_zh": "身体贴合与支撑表达",
+          // 卖点如何通过图片/文字表达。
+          "expression": "侧卧人物、身体位置标注与均匀重量分布声明。",
+          // 支撑该卖点的组件ID，必须属于本次输入包。
+          "evidence_part_ids": ["0dc19ade09f5f5a8f5da0c91e5d547f33836cf909e7d3510f64ed87099ac6e16", "d79043cb41e4d2301ce426a6a3d32402ca8ec2bcbd8f31724662776f0517b1e1", "f36115747b67276cfa8872a80cc373b2cd100fa6a234f5fe2c36ba998338683a", "f72ba47a6df70aab6d076d3b00a6d081f173ae646ee07642fe64705e622081b8"],
+          // 证据覆盖和来源状态。
+          "evidence_status": "unverified_competitor_claim_not_measured"
+        },
+        {
+          // 当前卖点或分析条目的内部标识。
+          "id": "secure_fit",
+          // 中文卖点名称。
+          "name_zh": "深口袋包覆与安装便利",
+          // 卖点如何通过图片/文字表达。
+          "expression": "拉伸侧围/床角的操作展示，关联安装与不易滑动的文案。",
+          // 支撑该卖点的组件ID，必须属于本次输入包。
+          "evidence_part_ids": ["35381d5e06c47f00b3bd6181a6581a5fe8923ca0f83591b41ff4bb3b0d2a2b83", "58da3b8845df80a2181bfab7155d9a3b79e6cdff43cb98f0623ff3883d6fcfc5", "df6fd70c3a0a0b6e19b012816ef15218fd413820b759432b8725958d28868aca", "f72ba47a6df70aab6d076d3b00a6d081f173ae646ee07642fe64705e622081b8"],
+          // 证据覆盖和来源状态。
+          "evidence_status": "visual_installation_demonstration_plus_source_claim"
+        },
+        {
+          // 当前卖点或分析条目的内部标识。
+          "id": "care",
+          // 中文卖点名称。
+          "name_zh": "清洁维护便利",
+          // 卖点如何通过图片/文字表达。
+          "expression": "五点描述机洗与压缩包装后的恢复方法，当前视觉样本未展示洗涤测试。",
+          // 支撑该卖点的组件ID，必须属于本次输入包。
+          "evidence_part_ids": ["58da3b8845df80a2181bfab7155d9a3b79e6cdff43cb98f0623ff3883d6fcfc5", "df6fd70c3a0a0b6e19b012816ef15218fd413820b759432b8725958d28868aca"],
+          // 证据覆盖和来源状态。
+          "evidence_status": "source_copy_claim_only"
+        }
+      ],
+      // 整体产品结构，例如pillow_top；不同结构不能直接迁移外观。
+      "product_form": "pillow_top_pad",
+      // 整套目标客群分析。
+      "audience": [
+        {
+          // 条目名称。
+          "name": "hot sleepers",
+          // 判断或标签的依据，和客观实测证据区分。
+          "basis": "原副标题和清凉表达；非功效验证"
+        },
+        {
+          // 条目名称。
+          "name": "希望增加床面舒适感的使用者",
+          // 判断或标签的依据，和客观实测证据区分。
+          "basis": "由柔软和垫层表达归纳，属于分析推断"
+        }
+      ],
+      // 整套使用/表达场景。
+      "scenes": ["卧室产品展示", "手部触感演示", "侧卧睡眠", "床角安装", "家庭床上生活场景"],
+      // 构图、配色、光线等整套视觉风格。
+      "visual_style": ["深灰产品纹理近景", "绿色自然主题的A+", "浅色卧室与深色产品对比", "文字标注和箭头解释"],
+      // 标题、五点等信息组织方式，不是直接复用竞品文案。
+      "copy_structure": {
+        // 标题组件规则。
+        "title": "品类、尺寸、柔软等卖点与来源功效声明",
+        // 五点表达顺序或结构分析，不控制原始条数。
+        "bullets": "柔软与材料/尺寸 → 舒适与支撑 → 安装与恢复 → 机洗 → 满意度承诺",
+        // A+图片或已有A+文本组件规则。
+        "aplus": "生活场景 → 柔软 → 清凉/透气 → 支撑 → 包覆固定 → 信任与家庭场景"
+      },
+      // 可借鉴表达原则，需要结合自有产品事实和场景核对。
+      "transferable_principles": ["将触感近景、人物使用场景与文字利益点组织成同一套柔软舒适表达。", "安装类卖点使用动作图或视频展示，比只有形容词更便于理解。", "图片、五点与视频重复同一核心主题，同时分别承担外观、场景、操作说明。"],
+      // 缺失、不可验证和不适用事项；不能在生成阶段自动忽略。
+      "limitations": ["普通详情在原快照缺失，不补造。", "只取得图库前4张和7张A+，整套指本次实际采集范围，非网站全部内容。", "人物和系列图可能为通用品牌素材，不证明所选变体的所有外观与参数。", "清凉、疼痛缓解、化学物质声明、媒体背书、认证标识和客户规模均未经独立验证。", "视频只分析8个关键帧，没有语音转录。"],
+      // 整套综合英文叙述，独立编码成整体向量；不得超过当前6000字符预算。
+      "embedding_text_en": "A US Niagara charcoal quilted pillow-top mattress pad Listing organized around ultra-soft, cloud-like comfort. The main image emphasizes a raised quilted surface in a bedroom. Secondary and A+ images combine tactile hand-press softness imagery, side-sleeping lifestyle scenes, green natural backgrounds, airflow-arrow graphics and elastic deep-pocket fitting. The video samples repeat the same narrative: sleeping bedroom, fabric close-up, hands fitting the side skirt, palm and fingertip contact, breathability/cooling text and sleeping person. Copy progresses from softness and material/size claims to cushioning/support, installation and package recovery, washability and satisfaction. Intended expression: added bed comfort, airy/cooling feel, secure fit and easy care; hot sleepers are explicitly addressed. Reusable strategy is coordinated product close-ups, touch demonstrations, sleeping scenes and installation actions across images, video and copy. Softness, support, cooling, pain-relief, material, certification and media claims remain competitor statements, not independently verified product facts. Scope: four gallery images, seven A+ images, source copy and eight sampled video frames; ordinary description absent and audio not transcribed."
+    }
+  },
+  // 对应原始标准JSON文件；实际运行读取原文件，而不是本对照。
+  "selection-example.json": [
+    {
+      // 历史v2参考包ID，仅用于旧match_preview；不可与v3或新任务版本互换。
+      "bundle_id": "c0a8a6a76279fc11592045b6cd9d0710ae6039acaf73d153d401762bb92005d9",
+      // 组件唯一ID，必须在所选bundle内存在，不是图片序号。
+      "part_id": "0e80533342e2ee68e441e09a50a3dccf530de524b1d0000142b8f76d6ec42754",
+      // 第三阶段准备怎样使用此组件；选择不等于批准。
+      "planned_use": "main_image"
+    },
+    {
+      // 历史v2参考包ID，仅用于旧match_preview；不可与v3或新任务版本互换。
+      "bundle_id": "a4dbd5cb4c2164a5bbdc69a3d49a67e9c869a7af1f833704707a365f0f97a695",
+      // 组件唯一ID，必须在所选bundle内存在，不是图片序号。
+      "part_id": "0c0fcf336a0aaf3fe9fb2f8791b6f06e53f27f385978a54c51e1d141a7968b98",
+      // 第三阶段准备怎样使用此组件；选择不等于批准。
+      "planned_use": "bullet"
+    },
+    {
+      // 历史v2参考包ID，仅用于旧match_preview；不可与v3或新任务版本互换。
+      "bundle_id": "b2746630430c1be4d17f26ae1d18cdfc06ea989a09f7aea81d859aeef9aaddc2",
+      // 组件唯一ID，必须在所选bundle内存在，不是图片序号。
+      "part_id": "74d92d804424d253b7ff48a45969a60a490f95f630c6aa3b15983755044a2c62",
+      // 第三阶段准备怎样使用此组件；选择不等于批准。
+      "planned_use": "gallery"
+    }
+  ]
+}

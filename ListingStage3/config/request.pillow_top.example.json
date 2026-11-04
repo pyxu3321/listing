@@ -1,0 +1,68 @@
+{
+  "country_code": "US",
+  "category_id": "toppers",
+  "site_ids": [],
+  "product_description": "蓬松绗缝填充床垫加垫，quilted plush filled pillow-top mattress pad",
+  "product_form": "pillow_top",
+  "selling_points": [
+    "蓬松柔软",
+    "希望体现冬暖夏凉的方向，功效尚需核验"
+  ],
+  "style": "清爽明快，明亮自然 / fresh bright airy natural bedroom",
+  "retrieval_terms": [
+    "soft plush comfort mattress topper",
+    "breathable sleep setting"
+  ],
+  "product_facts": {},
+  "own_images": [],
+  "reference_needs": [
+    {
+      "role": "main_image",
+      "purpose": "产品全景与材质，product texture closeup",
+      "entity_kind": "image"
+    },
+    {
+      "role": "gallery",
+      "purpose": "表现柔软的触感图，softness hand touch",
+      "entity_kind": "image",
+      "preferred_themes": [
+        "hand press",
+        "softness"
+      ]
+    },
+    {
+      "role": "aplus",
+      "purpose": "明亮清爽的卧室场景，airy bedroom lifestyle",
+      "entity_kind": "image",
+      "preferred_themes": [
+        "bright bedroom",
+        "full bed",
+        "fresh style"
+      ]
+    },
+    {
+      "role": "bullet",
+      "purpose": "从用户收益到产品依据的卖点组织，comfort benefits",
+      "entity_kind": "text"
+    },
+    {
+      "role": "video",
+      "purpose": "展示使用场景与触感动作，sleep setting touch demonstration",
+      "entity_kind": "video",
+      "preferred_themes": [
+        "hand press",
+        "bright bedroom"
+      ]
+    },
+    {
+      "role": "title",
+      "entity_kind": "text",
+      "purpose": "核心属性与用户收益的标题顺序，product attribute and benefit title structure"
+    },
+    {
+      "role": "description",
+      "entity_kind": "text",
+      "purpose": "完整产品介绍的叙述组织，product description narrative"
+    }
+  ]
+}
