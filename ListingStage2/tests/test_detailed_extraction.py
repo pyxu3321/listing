@@ -92,6 +92,17 @@ class DetailedTests(unittest.TestCase):
         b,r,c=fixture();r['image_reviews'][0]['colors']['product_core']={'status':'not_assessed','values_en':['blue']}
         with self.assertRaises(ValueError):validate_review(r,b,c)
 
+    def test_retained_caption_keeps_unassessed_roles_and_provenance(self):
+        b,r,c=fixture();image=r['image_reviews'][1]
+        image['fresh_pixel_review']=False
+        image['review_method']='prior_caption_reused_color_roles_not_assessed'
+        image['colors']={role:{'status':'not_assessed','values_en':[]} for role in c['color_roles']}
+        whole,projected=compile_review(b,r,Encoder(),c)
+        features=projected['parts'][2]['features']
+        self.assertEqual(features['palette'],[])
+        self.assertEqual(features['analysis_method'],'retained_caption_pending_color_review_v2')
+        self.assertFalse(features['visual_review']['fresh_pixel_review'])
+
     def test_independent_images_and_whole_encode_once_without_source_mutation(self):
         b,r,c=fixture();before=deepcopy(b);encoder=Encoder();whole,projected=compile_review(b,r,encoder,c)
         self.assertEqual(len(encoder.calls),3)  # 两张图各一次，整体单独一次。

@@ -93,7 +93,11 @@ def run(source, reviews, output, store_path, allow_partial=False, catalog=None):
     write(output/'query-contract.json',contract(catalog))
     (output/'query-system-prompt.txt').write_text(QUERY_SYSTEM,encoding='utf-8')
     write(output/'verification.json', {'status':'passed','counts':manifest['counts'], 'missing_review_ranks':missing,
-           'partial_pilot':bool(missing), 'newly_reviewed_images':sum(len(r['image_reviews']) for b,r in pairs),
+           'partial_pilot':bool(missing),
+           'image_role_records':sum(len(r['image_reviews']) for b,r in pairs),
+           'newly_reviewed_images':sum(i.get('fresh_pixel_review',True) for b,r in pairs for i in r['image_reviews']),
+           'legacy_caption_only_images':sum(i.get('fresh_pixel_review') is False for b,r in pairs for i in r['image_reviews']),
+           'image_records_with_unassessed_colors':sum(any(c['status']=='not_assessed' for c in i['colors'].values()) for b,r in pairs for i in r['image_reviews']),
            'atomic_attributes':sum(len(r['attributes']) for b,r in pairs), 'paid_api_calls':0,
            'semantic_approval':'pending_operator_review', 'database_roundtrip_verified':True,
            'video_reanalysed':False, 'original_v5_library_replaced':False})

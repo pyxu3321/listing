@@ -169,7 +169,8 @@ def compile_review(bundle, review, encoder, catalog=None):
                  palette=list(dict.fromkeys(c for x in image['colors'].values() for c in x['values_en'])),
                  composition=image['composition_en'],scene=image['scene_en'],themes=list(image['expression_methods']),
                  claims=[],observed_text_claims_verified=False,
-                 analysis_method='per_image_review_v2', quality_score=None)
+                 analysis_method=('retained_caption_pending_color_review_v2' if image.get('fresh_pixel_review') is False
+                                  else 'per_image_review_v2'), quality_score=None)
         part['embedding'] = {'model': encoder.model, 'model_digest': encoder.digest, 'recipe': PART_RECIPE,
                              'dimensions': len(vector), 'input_sha256': hashlib.sha256(text.encode()).hexdigest(), 'vector': vector}
     attributes = deepcopy(review['attributes'])

@@ -1,0 +1,24 @@
+{
+  "library_indexes": [
+    "D:\\ListingStage2\\outputs\\batches\\detailed-all50-20261104\\release\\library\\library_index.json"
+  ],
+  "encoder": {
+    "stage2_project": "D:/ListingStage2",
+    "ollama_url": "http://127.0.0.1:11434",
+    "model": "nomic-embed-text:latest",
+    "cache_directory": "D:/ListingStage3/data/query_cache"
+  },
+  "retrieval": {
+    "whole_top_k": 3,
+    "components_per_need": 3,
+    "minimum_similarity": 0.25,
+    "include_pending": true,
+    "whole_score_weights": {
+      "product": 0.65,
+      "style": 0.35
+    },
+    "style_evidence_top_n": 3,
+    "rank_tiebreak_tolerance": 0.02,
+    "match_components": false
+  }
+}
